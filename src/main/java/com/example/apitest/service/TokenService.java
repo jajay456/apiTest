@@ -5,7 +5,6 @@ import com.example.apitest.dto.TokenResponse;
 import com.example.apitest.entity.SsoUserEntity;
 import com.example.apitest.dto.UserResponseDTO;
 import com.example.apitest.repository.SsoUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
@@ -13,8 +12,12 @@ import java.util.List;
 import java.util.ArrayList;
 @Service
 public class TokenService {
-    @Autowired
-    private SsoUserRepository repository;
+
+    private final SsoUserRepository repository;
+
+    public TokenService(SsoUserRepository repository) {
+        this.repository = repository;
+    }
 
     public TokenResponse generateToken(TokenRequest req) {
         try {
